@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(145, 218, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Initially hide both screens from view and we will make them pop up as the game progresses */
+#quiz,
+#end-screen {
+    display: none;
+}
