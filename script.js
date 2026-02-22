@@ -24,12 +24,17 @@ function shuffleArray(arr) {
 async function fetchQuestions() {
     const response = await fetch("https://opentdb.com/api.php?amount=10")
     const data = await response.json()
-    questions = data
+    questions = data.results
     // console.log(questions)
 }
 
 // Game Logic
-function populateAnswers() {
+function populateQuestion() {
+    // Question portion
+    let questionBox = document.getElementById("question")
+    questionBox.textContent = questions[questionNum].question
+
+    // Answers portion
     let answerBoxes = document.querySelectorAll(".answer")
     let incorrectAnswer = questions[questionNum].incorrect_answers
     let correctAnswer = questions[questionNum].correct_answer
@@ -47,6 +52,7 @@ function populateAnswers() {
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none"
     quizScreen.style.display = "block"
+    populateQuestion()
 })
 
 // Initialize
