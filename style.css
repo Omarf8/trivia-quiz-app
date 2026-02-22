@@ -5,8 +5,8 @@ body {
     align-items: center;
 }
 
-/* Initially hide both screens from view and we will make them pop up as the game progresses */
-#quiz,
+/* Initially hide all screens from view and we will make them pop up as the game progresses */
+#start-screen, #quiz,
 #end-screen {
     display: none;
 }

@@ -4,6 +4,7 @@ let questionNum = 0 // Keep track of our current question
 let score = 0
 
 // DOM Selection
+let loadingScreen = document.getElementById("loading")
 let startScreen = document.getElementById("start-screen")
 let quizScreen = document.getElementById("quiz")
 let startButton = document.getElementById("start-button")
@@ -24,8 +25,10 @@ function shuffleArray(arr) {
 async function fetchQuestions() {
     const response = await fetch("https://opentdb.com/api.php?amount=10")
     const data = await response.json()
+    // console.log(data)
     questions = data.results
-    // console.log(questions)
+    loadingScreen.style.display = "none"
+    startScreen.style.display = "block"
 }
 
 // Game Logic
