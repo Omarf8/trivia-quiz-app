@@ -19,3 +19,29 @@ async function fetchQuestions() {
 }
 
 // fetchQuestions()
+let questionNum = 0 // Keep track of our current question
+
+function populateAnswers() {
+    let answerBoxes = document.querySelectorAll(".answer")
+    let incorrectAnswer = questions[questionNum].incorrect_answers
+    let correctAnswer = questions[questionNum].correct_answer
+    let allAnswers = [...incorrectAnswer, correctAnswer]
+    shuffleArray(allAnswers)
+
+    answerBoxes.forEach((answer, ind) => {
+        answer.textContent = allAnswers[ind]
+    })
+
+    questionNum++; // Increment for the next time this func is called
+}
+
+function shuffleArray(arr) {
+    let i = arr.length - 1
+    while(i > 0) {
+        let randomIndex = Math.floor((Math.random() * (i + 1))) // Get index from 0-i
+        let tmp = arr[randomIndex]
+        arr[randomIndex] = arr[i]
+        arr[i] = tmp
+        i--;
+    }
+}
