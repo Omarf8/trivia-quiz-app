@@ -10,6 +10,12 @@ let quizScreen = document.getElementById("quiz")
 let startButton = document.getElementById("start-button")
 
 // Utility Functions
+function decodeHTML(text) {
+    let temp = document.createElement("decodetext")
+    temp.innerHTML = text
+    return temp.textContent
+}
+
 function shuffleArray(arr) {
     let i = arr.length - 1
     while(i > 0) {
@@ -35,7 +41,7 @@ async function fetchQuestions() {
 function populateQuestion() {
     // Question portion
     let questionBox = document.getElementById("question")
-    questionBox.textContent = questions[questionNum].question
+    questionBox.textContent = decodeHTML(questions[questionNum].question)
 
     // Answers portion
     let answerBoxes = document.querySelectorAll(".answer")
@@ -45,7 +51,7 @@ function populateQuestion() {
     shuffleArray(allAnswers)
 
     answerBoxes.forEach((answer, ind) => {
-        answer.textContent = allAnswers[ind]
+        answer.textContent = decodeHTML(allAnswers[ind])
     })
 
     questionNum++; // Increment for the next time this func is called
