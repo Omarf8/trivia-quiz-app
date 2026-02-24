@@ -10,6 +10,7 @@ let startScreen = document.getElementById("start-screen")
 let quizScreen = document.getElementById("quiz")
 let startButton = document.getElementById("start-button")
 let answerButtons = document.querySelectorAll(".answer")
+let nextButton = document.getElementById("next")
 
 // Utility Functions
 function decodeHTML(text) {
@@ -54,8 +55,6 @@ function populateQuestion() {
     answerButtons.forEach((answer, ind) => {
         answer.textContent = decodeHTML(allAnswers[ind])
     })
-
-    questionNum++; // Increment for the next time this func is called
 }
 
 // Event Listeners
@@ -72,6 +71,11 @@ answerButtons.forEach(button => {
         button.classList.add("selected") // Make the current button become selected
         selectedButton = button
     })
+})
+
+nextButton.addEventListener("click", () => {
+    questionNum++;
+    populateQuestion()
 })
 
 // fetchQuestions()
