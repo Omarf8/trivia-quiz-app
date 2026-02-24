@@ -2,12 +2,14 @@
 let questions = [] // Store the requested trivia info
 let questionNum = 0 // Keep track of our current question
 let score = 0
+let selectedButton = null
 
 // DOM Selection
 let loadingScreen = document.getElementById("loading")
 let startScreen = document.getElementById("start-screen")
 let quizScreen = document.getElementById("quiz")
 let startButton = document.getElementById("start-button")
+let answerButtons = document.querySelectorAll(".answer")
 
 // Utility Functions
 function decodeHTML(text) {
@@ -44,13 +46,12 @@ function populateQuestion() {
     questionBox.textContent = decodeHTML(questions[questionNum].question)
 
     // Answers portion
-    let answerBoxes = document.querySelectorAll(".answer")
     let incorrectAnswer = questions[questionNum].incorrect_answers
     let correctAnswer = questions[questionNum].correct_answer
     let allAnswers = [...incorrectAnswer, correctAnswer]
     shuffleArray(allAnswers)
 
-    answerBoxes.forEach((answer, ind) => {
+    answerButtons.forEach((answer, ind) => {
         answer.textContent = decodeHTML(allAnswers[ind])
     })
 
@@ -65,4 +66,12 @@ startButton.addEventListener("click", function() {
 })
 
 // Initialize
+answerButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        answerButtons.forEach(btn => btn.classList.remove("selected")) // Remove the selected attribute from all buttons
+        button.classList.add("selected") // Make the current button become selected
+        selectedButton = button
+    })
+})
+
 // fetchQuestions()

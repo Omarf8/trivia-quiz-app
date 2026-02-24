@@ -10,3 +10,9 @@ body {
 #end-screen {
     display: none;
 }
+
+.answer.selected {
+    background-color: rgb(205, 88, 205);
+    border: 2px solid;
+    font-weight: bold;
+}
