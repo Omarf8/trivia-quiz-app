@@ -33,7 +33,7 @@ function shuffleArray(arr) {
 
 // API Functions
 async function fetchQuestions() {
-    const response = await fetch("https://opentdb.com/api.php?amount=10")
+    const response = await fetch("https://opentdb.com/api.php?amount=10&type=multiple")
     const data = await response.json()
     // console.log(data)
     questions = data.results
