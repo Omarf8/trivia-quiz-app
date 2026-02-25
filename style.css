@@ -16,3 +16,11 @@ body {
     border: 2px solid;
     font-weight: bold;
 }
+
+.answer.correct {
+    background-color: green;
+}
+
+.answer.incorrect {
+    background-color: red;
+}

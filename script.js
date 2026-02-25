@@ -47,14 +47,32 @@ function populateQuestion() {
     questionBox.textContent = decodeHTML(questions[questionNum].question)
 
     // Answers portion
-    let incorrectAnswer = questions[questionNum].incorrect_answers
+    let incorrectAnswers = questions[questionNum].incorrect_answers
     let correctAnswer = questions[questionNum].correct_answer
     let allAnswers = [...incorrectAnswer, correctAnswer]
     shuffleArray(allAnswers)
 
     answerButtons.forEach((answer, ind) => {
         answer.textContent = decodeHTML(allAnswers[ind])
+        answer.classList.remove("selected")
+        answer.classList.remove("correct")
+        answer.classList.remove("incorrect")
     })
+}
+
+function evaluateQuestion() {
+    answerButtons.forEach(button => {
+        button.classList.remove("selected")
+        if(button.textContent === questions[questionNum].correct_answer) {
+            button.classList.add("correct")
+        }
+
+    })
+
+    if(selectedButton && selectedButton.classList.contains("correct")) { score++ }
+    if(selectedButton && !selectedButton.classList.contains("correct")) { selectedButton.classList.add("incorrect") }
+
+    selectedButton = null
 }
 
 // Event Listeners
