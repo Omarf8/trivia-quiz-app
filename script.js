@@ -10,6 +10,7 @@ let startScreen = document.getElementById("start-screen")
 let quizScreen = document.getElementById("quiz")
 let startButton = document.getElementById("start-button")
 let answerButtons = document.querySelectorAll(".answer")
+let confirmButton = document.getElementById("confirm")
 let nextButton = document.getElementById("next")
 
 // Utility Functions
@@ -49,7 +50,7 @@ function populateQuestion() {
     // Answers portion
     let incorrectAnswers = questions[questionNum].incorrect_answers
     let correctAnswer = questions[questionNum].correct_answer
-    let allAnswers = [...incorrectAnswer, correctAnswer]
+    let allAnswers = [...incorrectAnswers, correctAnswer]
     shuffleArray(allAnswers)
 
     answerButtons.forEach((answer, ind) => {
@@ -58,6 +59,9 @@ function populateQuestion() {
         answer.classList.remove("correct")
         answer.classList.remove("incorrect")
     })
+
+    confirmButton.style.display = "block"
+    nextButton.style.display = "none"
 }
 
 function evaluateQuestion() {
@@ -73,6 +77,9 @@ function evaluateQuestion() {
     if(selectedButton && !selectedButton.classList.contains("correct")) { selectedButton.classList.add("incorrect") }
 
     selectedButton = null
+
+    confirmButton.style.display = "none"
+    nextButton.style.display = "block"
 }
 
 // Event Listeners
@@ -91,9 +98,21 @@ answerButtons.forEach(button => {
     })
 })
 
-nextButton.addEventListener("click", () => {
-    questionNum++;
-    populateQuestion()
+confirmButton.addEventListener("click", () => {
+    if(selectedButton) {
+        evaluateQuestion()
+    }
 })
 
-// fetchQuestions()
+nextButton.addEventListener("click", () => {
+    questionNum++;
+
+    if(questionNum < questions.length) {
+        populateQuestion()
+    }
+    else {
+        // I'll implement the end screen later
+    }
+})
+
+fetchQuestions()
