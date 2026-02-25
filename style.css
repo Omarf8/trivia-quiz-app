@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+* {
+    font-family: "Bubblegum Sans", sans-serif;
+}
+
 body {
     background-color: rgb(145, 218, 255);
     display: flex;
@@ -7,8 +13,35 @@ body {
     margin: 0;
 }
 
+h1 {
+    font-size: 48px;
+}
+
+p {
+    font-size: 20px;
+}
+
+button {
+    font-size: 20px;
+    padding: 15px 40px;
+}
+
 #start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width: 350px;
+    border: 2px solid black;
     text-align: center;
+    gap: 15px;
+}
+
+#start-screen h1,
+#start-screen p,
+#start-screen button {
+    margin: 0;
 }
 
 /* Initially hide all screens from view (and the next button) and we will make them pop up as the game progresses */
@@ -17,6 +50,7 @@ body {
     display: none;
 }
 
+/* Style for Answer Buttons */
 .answer.selected {
     background-color: rgb(205, 88, 205);
     border: 2px solid;

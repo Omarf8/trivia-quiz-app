@@ -38,7 +38,7 @@ async function fetchQuestions() {
     // console.log(data)
     questions = data.results
     loadingScreen.style.display = "none"
-    startScreen.style.display = "block"
+    startScreen.style.display = "flex"
 }
 
 // Game Logic
@@ -115,4 +115,4 @@ nextButton.addEventListener("click", () => {
     }
 })
 
-// fetchQuestions()
+fetchQuestions()
