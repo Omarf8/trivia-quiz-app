@@ -3,6 +3,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#start-screen {
+    text-align: center;
 }
 
 /* Initially hide all screens from view (and the next button) and we will make them pop up as the game progresses */

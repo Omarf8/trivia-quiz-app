@@ -115,4 +115,4 @@ nextButton.addEventListener("click", () => {
     }
 })
 
-fetchQuestions()
+// fetchQuestions()
