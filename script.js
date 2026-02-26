@@ -58,6 +58,7 @@ function populateQuestion() {
         answer.classList.remove("selected")
         answer.classList.remove("correct")
         answer.classList.remove("incorrect")
+        answer.disabled = false
     })
 
     confirmButton.style.display = "block"
@@ -67,10 +68,10 @@ function populateQuestion() {
 function evaluateQuestion() {
     answerButtons.forEach(button => {
         button.classList.remove("selected")
+        button.disabled = true
         if(button.textContent === questions[questionNum].correct_answer) {
             button.classList.add("correct")
         }
-
     })
 
     if(selectedButton && selectedButton.classList.contains("correct")) { score++ }
@@ -115,4 +116,4 @@ nextButton.addEventListener("click", () => {
     }
 })
 
-fetchQuestions()
+// fetchQuestions()

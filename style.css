@@ -76,6 +76,13 @@ button {
     display: none;
 }
 
+.answer:disabled {
+    opacity: 1;
+    cursor: default;
+    background-color: gray;
+    color: inherit;
+}
+
 /* Style for Answer Buttons */
 .answer.selected {
     background-color: rgb(205, 88, 205);
