@@ -85,7 +85,7 @@ function evaluateQuestion() {
 // Event Listeners
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none"
-    quizScreen.style.display = "block"
+    quizScreen.style.display = "flex"
     populateQuestion()
 })
 

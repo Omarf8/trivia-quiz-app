@@ -26,14 +26,12 @@ button {
     padding: 15px 40px;
 }
 
+/* Start Screen CSS */
 #start-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 350px;
-    width: 350px;
-    border: 2px solid black;
     text-align: center;
     gap: 15px;
 }
@@ -42,6 +40,34 @@ button {
 #start-screen p,
 #start-screen button {
     margin: 0;
+}
+
+/* Quiz CSS */
+#question {
+    font-size: 32px;
+}
+
+#quiz {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+#answer-boxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* Two equal columns */
+    gap: 15px;  /* Space between buttons */
+}
+
+/* CSS For All Screens */
+#start-screen, #quiz, 
+#end-screen {
+    height: 500px;
+    width: 800px;
+    border: 2px solid black;
 }
 
 /* Initially hide all screens from view (and the next button) and we will make them pop up as the game progresses */
