@@ -8,10 +8,13 @@ let selectedButton = null
 let loadingScreen = document.getElementById("loading")
 let startScreen = document.getElementById("start-screen")
 let quizScreen = document.getElementById("quiz")
+let endScreen = document.getElementById("end-screen")
 let startButton = document.getElementById("start-button")
 let answerButtons = document.querySelectorAll(".answer")
 let confirmButton = document.getElementById("confirm")
 let nextButton = document.getElementById("next")
+let winningStatus = document.getElementById("win-status")
+let finalScore = document.getElementById("score")
 
 // Utility Functions
 function decodeHTML(text) {
@@ -43,6 +46,7 @@ async function fetchQuestions() {
 
 // Game Logic
 function populateQuestion() {
+    // startScreen.style.display = "flex"
     // Question portion
     let questionBox = document.getElementById("question")
     questionBox.textContent = decodeHTML(`${questionNum + 1}. ${questions[questionNum].question}`)
@@ -83,6 +87,20 @@ function evaluateQuestion() {
     nextButton.style.display = "block"
 }
 
+function showEndScreen() {
+    quizScreen.style.display = "none"
+    endScreen.style.display = "flex"
+
+    if(score > 5) {
+        winningStatus.textContent = "You Passed!"
+    }
+    else {
+        winningStatus.textContent = "Better Luck Next Time!"
+    }
+
+    finalScore.textContent = `${score}/10`
+}
+
 // Event Listeners
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none"
@@ -112,8 +130,8 @@ nextButton.addEventListener("click", () => {
         populateQuestion()
     }
     else {
-        // I'll implement the end screen later
+        showEndScreen()
     }
 })
 
-// fetchQuestions()
+fetchQuestions()
