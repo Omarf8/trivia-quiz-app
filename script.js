@@ -45,7 +45,7 @@ async function fetchQuestions() {
 function populateQuestion() {
     // Question portion
     let questionBox = document.getElementById("question")
-    questionBox.textContent = decodeHTML(questions[questionNum].question)
+    questionBox.textContent = decodeHTML(`${questionNum + 1}. ${questions[questionNum].question}`)
 
     // Answers portion
     let incorrectAnswers = questions[questionNum].incorrect_answers
