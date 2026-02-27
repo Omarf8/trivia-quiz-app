@@ -36,8 +36,7 @@ button {
     gap: 15px;
 }
 
-#start-screen h1,
-#start-screen p,
+h1, h2, p,
 #start-screen button {
     margin: 0;
 }
@@ -61,6 +60,28 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;  /* Two equal columns */
     gap: 15px;  /* Space between buttons */
+}
+
+/* End Screen CSS */
+#end-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#end-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#end-row {
+    width: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 /* CSS For All Screens */
