@@ -3,6 +3,8 @@ let questions = [] // Store the requested trivia info
 let questionNum = 0 // Keep track of our current question
 let score = 0
 let selectedButton = null
+let startTime = 0
+let endTime = 0
 
 // DOM Selection
 let loadingScreen = document.getElementById("loading")
@@ -15,6 +17,7 @@ let confirmButton = document.getElementById("confirm")
 let nextButton = document.getElementById("next")
 let winningStatus = document.getElementById("win-status")
 let finalScore = document.getElementById("score")
+let timeElapsed = document.getElementById("timer")
 
 // Utility Functions
 function decodeHTML(text) {
@@ -89,6 +92,14 @@ function evaluateQuestion() {
 }
 
 function showEndScreen() {
+    endTime = Date.now()
+
+    let ms = endTime - startTime
+    let totalSec = Math.floor(ms / 1000)
+
+    let min = Math.floor(totalSec / 60)
+    let sec = totalSec % 60
+
     quizScreen.style.display = "none"
     endScreen.style.display = "flex"
 
@@ -100,12 +111,16 @@ function showEndScreen() {
     }
 
     finalScore.textContent = `${score}/10`
+    timeElapsed.textContent = `${min}:${sec.toString().padStart(2, '0')}`
 }
 
 // Event Listeners
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none"
     quizScreen.style.display = "flex" // MIGHT NEED TO DELETE THIS
+
+    startTime = Date.now()
+
     populateQuestion()
 })
 
@@ -135,4 +150,4 @@ nextButton.addEventListener("click", () => {
     }
 })
 
-fetchQuestions()
+// fetchQuestions()
