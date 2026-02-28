@@ -26,6 +26,15 @@ button {
     padding: 15px 40px;
 }
 
+/* Loading Screen CSS */
+#loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 /* Start Screen CSS */
 #start-screen {
     display: flex;

@@ -5,6 +5,7 @@ let score = 0
 let selectedButton = null
 let startTime = 0
 let endTime = 0
+let isFetching = false
 
 // DOM Selection
 let loadingScreen = document.getElementById("loading")
@@ -40,12 +41,41 @@ function shuffleArray(arr) {
 
 // API Functions
 async function fetchQuestions() {
+    if(isFetching) { return }
+    isFetching = true
+
     const response = await fetch("https://opentdb.com/api.php?amount=10&type=multiple")
+
+    // API Error when fetching too often
+    if(response.status === 429) {
+        loadingScreen.innerHTML = `
+            <h1>Too many requests detected.</h1>
+            <h1>Please wait a moment...</h1>
+            <button id="retry-btn">Try Again</button>
+        `
+        
+        document.getElementById("retry-btn").addEventListener("click", () => {
+            loadingScreen.innerHTML = "<h1>Loading questions...</h1>"
+            isFetching = false
+            fetchQuestions()
+        })
+
+        return
+    }
+
     const data = await response.json()
-    // console.log(data)
-    questions = data.results
-    loadingScreen.style.display = "none"
-    startScreen.style.display = "flex"
+
+    if(data.results && data.results.length > 0) {
+        questions = data.results
+        loadingScreen.style.display = "none"
+        startScreen.style.display = "flex"
+    }
+    else {
+        console.error("No questions returned")
+        alert("Failed to load questions. Please try again later.")
+    }
+
+    isFetching = false
 }
 
 // Game Logic
@@ -117,17 +147,19 @@ function showEndScreen() {
     timeElapsed.textContent = `${min}:${sec.toString().padStart(2, '0')}`
 }
 
-function reset() {
+async function reset() {
+    if(isFetching) { return }
+
     questionNum = 0
     score = 0
     selectedButton = null
-
     startTime = 0
     endTime = 0
 
     endScreen.style.display = "none"
-    loadingScreen.style.display = "block"
-    fetchQuestions()
+    loadingScreen.style.display = "flex"
+
+    await fetchQuestions()
 }
 
 // Event Listeners
