@@ -108,7 +108,7 @@ h1, h2, p,
     background-color: lightgreen;
 }
 
-#restart {
+#play-again {
     background-color: lightcoral;
 }
 
@@ -118,6 +118,14 @@ h1, h2, p,
     height: 500px;
     width: 800px;
     border: 2px solid black;
+}
+
+button, #play-again {
+    cursor: pointer;
+}
+
+#play-again:hover {
+    background-color: rgb(260, 128, 128);
 }
 
 /* Initially hide all screens from view (and the next button) and we will make them pop up as the game progresses */
