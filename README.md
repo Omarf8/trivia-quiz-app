@@ -1,2 +1,4 @@
 # trivia-quiz-app
-A simple Trivia Quiz game that pulls questions from an API. This project is built to practice HTML, CSS, and Javascript.
+Trivia quiz game using the Open Trivia Database API. Built with HTML, CSS, and JavaScript.
+
+Click [here](https://omarf8.github.io/trivia-quiz-app/) to play
