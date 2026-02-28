@@ -15,6 +15,7 @@ let startButton = document.getElementById("start-button")
 let answerButtons = document.querySelectorAll(".answer")
 let confirmButton = document.getElementById("confirm")
 let nextButton = document.getElementById("next")
+let playAgain = document.getElementById("play-again")
 let winningStatus = document.getElementById("win-status")
 let finalScore = document.getElementById("score")
 let timeElapsed = document.getElementById("timer")
@@ -49,8 +50,6 @@ async function fetchQuestions() {
 
 // Game Logic
 function populateQuestion() {
-    // endScreen.style.display = "none"
-    // quizScreen.style.display = "flex"
     // Question portion
     let questionBox = document.getElementById("question")
     questionBox.textContent = decodeHTML(`${questionNum + 1}. ${questions[questionNum].question}`)
@@ -82,8 +81,12 @@ function evaluateQuestion() {
         }
     })
 
-    if(selectedButton && selectedButton.classList.contains("correct")) { score++ }
-    if(selectedButton && !selectedButton.classList.contains("correct")) { selectedButton.classList.add("incorrect") }
+    if(selectedButton && selectedButton.classList.contains("correct")) { 
+        score++ 
+    }
+    else {
+        selectedButton.classList.add("incorrect")
+    }
 
     selectedButton = null
 
@@ -114,15 +117,30 @@ function showEndScreen() {
     timeElapsed.textContent = `${min}:${sec.toString().padStart(2, '0')}`
 }
 
+function reset() {
+    questionNum = 0
+    score = 0
+    selectedButton = null
+
+    startTime = 0
+    endTime = 0
+
+    endScreen.style.display = "none"
+    loadingScreen.style.display = "block"
+    fetchQuestions()
+}
+
 // Event Listeners
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none"
-    quizScreen.style.display = "flex" // MIGHT NEED TO DELETE THIS
+    quizScreen.style.display = "flex"
 
     startTime = Date.now()
 
     populateQuestion()
 })
+
+playAgain.addEventListener("click", reset)
 
 // Initialize
 answerButtons.forEach(button => {
