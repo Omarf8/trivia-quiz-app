@@ -76,7 +76,7 @@ function evaluateQuestion() {
     answerButtons.forEach(button => {
         button.classList.remove("selected")
         button.disabled = true
-        if(button.textContent === questions[questionNum].correct_answer) {
+        if(button.textContent === decodeHTML(questions[questionNum].correct_answer)) {
             button.classList.add("correct")
         }
     })
