@@ -46,7 +46,8 @@ async function fetchQuestions() {
 
 // Game Logic
 function populateQuestion() {
-    // startScreen.style.display = "flex"
+    // endScreen.style.display = "none"
+    // quizScreen.style.display = "flex"
     // Question portion
     let questionBox = document.getElementById("question")
     questionBox.textContent = decodeHTML(`${questionNum + 1}. ${questions[questionNum].question}`)
@@ -104,7 +105,7 @@ function showEndScreen() {
 // Event Listeners
 startButton.addEventListener("click", function() {
     startScreen.style.display = "none"
-    quizScreen.style.display = "flex"
+    quizScreen.style.display = "flex" // MIGHT NEED TO DELETE THIS
     populateQuestion()
 })
 
@@ -134,4 +135,4 @@ nextButton.addEventListener("click", () => {
     }
 })
 
-// fetchQuestions()
+fetchQuestions()

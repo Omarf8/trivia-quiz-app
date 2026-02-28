@@ -84,6 +84,34 @@ h1, h2, p,
     align-items: center;
 }
 
+#end-row > div {
+    /* Make the circle */
+    font-size: 20px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid black;
+    /* Center the text within the circle */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+#time {
+    background-color: plum;
+}
+
+#score {
+    background-color: lightgreen;
+}
+
+#restart {
+    background-color: lightcoral;
+}
+
 /* CSS For All Screens */
 #start-screen, #quiz, 
 #end-screen {
